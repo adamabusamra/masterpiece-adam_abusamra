@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'dashboard/admins';
+    protected $redirectTo = 'dashboard/admin';
 
     /**
      * Create a new controller instance.
@@ -55,10 +55,10 @@ class LoginController extends Controller
         ]);
 
         if (Auth::guard('teacher')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->intended('/dashboard/teacher/home');
+            return redirect()->intended('/dashboard/teacher/projects');
         }
         if (Auth::guard('student')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
-            return redirect()->intended('/dashboard/student/home');
+            return redirect()->intended('/dashboard/student/projects');
         }
         return back()
             ->withInput($request->only('email', 'remember'))

@@ -23,13 +23,13 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if ($guard == "teacher" && Auth::guard($guard)->check()) {
-                return redirect('/dashboard/teacher/home');
+                return redirect('/dashboard/teacher/projects');
             }
             if ($guard == "student" && Auth::guard($guard)->check()) {
-                return redirect('/dashboard/student/home');
+                return redirect('/dashboard/student/projects');
             }
             if (Auth::guard($guard)->check()) {
-                return redirect('/dashboard/admins');
+                return redirect('/dashboard/admin/teachers');
             }
         }
 
